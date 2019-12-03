@@ -3,8 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<script>
+		function setSearchEngine(){
+			let checkValue = document.querySelector("input[name=engine]:checked").value;
+			let actions = {
+				"google": "https://www.google.com/",
+				"duckDuckGo":"https://duckduckgo.com/",
+				"bind":"https://www.bing.com/search",
+				"ask":"https://www.ask.com/web"	
+			};	
+			let actionURL = actions[checkValue];
+			document.getElementById("searchForm").setAttribute("action", actionURL)			
+		};
 		// TODO: create a handler
     window.addEventListener("load", function(){
+		document.getElementById("searchForm").addEventListener("submit", setSearchEngine);
+		let textField = document.querySelector("input[name=testName]");
         // TODO: register the handler
     });
 	</script>
@@ -12,7 +25,16 @@
 
 <body>
 
-	<form id="searchForm">
+	<form id="searchForm" method="GET">
+		<label><input type="text" name="q"/>
+		<label>Google <input type="radio" name="engine" value="google"/></label>
+		<label>DuckDuckGo<input type="radio" name="engine" value="duckDuckGo"/></label>
+		<label>Bing<input type="radio" name="engine" value="bing"/></label>
+		<label>Ask<input type="radio" name="engine" value="ask"/></label>
+		<input type="submit" value="Go!"/>
+		<!--Q1: value attribute on the button sets the displayed text on the button
+		Q2: submitting now the value pair for the q key to nothing. Because nothing has been set yet
+		Q3: https-->
     <!-- TODO: add form elements -->
 	</form>
 
